@@ -1,19 +1,14 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({ sections }) => {
   const [nav, setNav] = useState(false);
 
-  const links = [
-    { id: 1, link: '/', text: 'Home' },
-    { id: 2, link: '/about', text: 'About' },
-    { id: 3, link: '/projects', text: 'Projects' },
-    { id: 4, link: '/skills', text: 'Skills' },
-    { id: 5, link: '/resume', text: 'Resume' },
-    { id: 6, link: '/contact', text: 'Contact' },
-  ];
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    setNav(false);
+  };
 
   return (
     <nav className="flex justify-between items-center w-full h-20 px-4 text-white bg-black/80 backdrop-blur-md fixed z-50 border-b border-white/10">
@@ -29,19 +24,19 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex space-x-2">
-        {links.map(({ id, link, text }) => (
+        {sections.map(({ id }, index) => (
           <motion.li
             key={id}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: id * 0.1 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
           >
-            <Link
-              to={link}
+            <button
+              onClick={() => scrollToSection(sections[index].ref)}
               className="px-4 py-2 cursor-pointer capitalize font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300"
             >
-              {text}
-            </Link>
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </button>
           </motion.li>
         ))}
       </ul>
@@ -69,22 +64,21 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="flex flex-col justify-center items-center h-screen"
             >
-              {links.map(({ id, link, text }) => (
+              {sections.map(({ id }, index) => (
                 <motion.li
                   key={id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: id * 0.1 }}
+                  transition={{ delay: index * 0.1 }}
                   className="my-4"
                 >
-                  <Link
-                    onClick={() => setNav(!nav)}
-                    to={link}
+                  <button
+                    onClick={() => scrollToSection(sections[index].ref)}
                     className="px-6 py-3 text-3xl font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300"
                   >
-                    {text}
-                  </Link>
+                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                  </button>
                 </motion.li>
               ))}
             </motion.ul>

@@ -23,7 +23,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-black to-gray-800 w-full text-white md:h-screen relative overflow-hidden">
+    <div id="projects" className="bg-gradient-to-b from-black to-gray-800 w-full text-white md:h-screen relative overflow-hidden scroll-mt-16">
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <motion.div
         initial={{ opacity: 0 }}

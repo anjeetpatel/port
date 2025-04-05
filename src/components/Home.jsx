@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { motion } from 'framer-motion';
@@ -63,13 +62,13 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-6 mt-8"
           >
-            <Link
-              to="/projects"
+            <button
+              onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
               className="group relative overflow-hidden text-white px-8 py-4 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 hover:scale-105 transition-transform duration-300 shadow-lg shadow-cyan-500/20"
             >
               <span className="relative z-10">View Projects</span>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-            </Link>
+            </button>
 
             <div className="flex gap-6">
               {socialLinks.map(({ id, child, href }) => (

@@ -4,7 +4,6 @@
 
 @layer base {
   html {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     scroll-behavior: smooth;
   }
 
@@ -13,18 +12,38 @@
   }
 }
 
-@layer utilities {
-  .bg-grid-pattern {
-    background-size: 50px 50px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  }
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent;
-  }
+/* Add smooth transitions for interactive elements */
+* {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
 
-  .glass-effect {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10;
-  }
+/* Enhance scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-cyan-400 to-blue-400;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent;
+}
+
+.glass-effect {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10;
 }
